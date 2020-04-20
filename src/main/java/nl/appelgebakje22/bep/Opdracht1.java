@@ -1,7 +1,6 @@
 package nl.appelgebakje22.bep;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
@@ -31,10 +30,9 @@ public final class Opdracht1 {
 		public void start() throws IOException {
 			Socket conn = this.server.accept();
 			System.out.println("Connected to client: " + conn.toString());
-			InputStream in = conn.getInputStream();
-			int data;
-			while ((data = in.read()) != -1)
-				System.out.print((char) data);
+			Scanner scanner = new Scanner(conn.getInputStream());
+			while (scanner.hasNextLine())
+				System.out.println(scanner.nextLine());
 			System.out.println("Client has disconnected! Exiting!");
 		}
 	}
@@ -60,7 +58,7 @@ public final class Opdracht1 {
 				String theLine = scanner.nextLine();
 				if (theLine.equals("exit"))
 					break;
-				out.write(theLine.getBytes());
+				out.write(theLine.concat("\n").getBytes());
 			}
 			System.out.println("Exit command received! Exiting!");
 			this.client.close();
