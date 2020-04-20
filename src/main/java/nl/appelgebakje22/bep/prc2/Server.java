@@ -42,7 +42,7 @@ public final class Server {
 		//Open server
 		while (true) {
 			try {
-				new MyServlet(server.accept());
+				new MyServlet(server.accept()).start();
 			} catch (IOException e) {
 				//We don't care about errors caused by closing the server in the "Input Listener" thread
 				if (e.getMessage().equalsIgnoreCase("Socket closed"))

@@ -12,7 +12,6 @@ final class MyServlet extends Thread {
 	MyServlet(Socket sock) {
 		super("Client-Thread: " + sock.getRemoteSocketAddress());
 		this.socket = sock;
-		this.start();
 	}
 
 	@Override
