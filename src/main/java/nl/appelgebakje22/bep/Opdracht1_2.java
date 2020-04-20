@@ -23,7 +23,6 @@ public final class Opdracht1_2 {
 		public void start() throws IOException {
 			Socket conn = this.server.accept();
 			System.out.println("Connected to client: " + conn.toString());
-			DataOutputStream out = new DataOutputStream(conn.getOutputStream());
 			DataInputStream in = new DataInputStream(conn.getInputStream());
 			// Request
 			BufferedReader reader = new BufferedReader(new InputStreamReader(in));
@@ -34,7 +33,7 @@ public final class Opdracht1_2 {
 					break;
 			}
 			// Response
-			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out));
+			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
 			writer.write("HTTP/1.1 200 OK\r\n");
 			writer.write("\r\n");
 			writer.write("<h1>It works!</h1>\r\n");
