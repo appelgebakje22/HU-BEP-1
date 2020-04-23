@@ -23,9 +23,8 @@ public final class Opdracht1_2 {
 		public void start() throws IOException {
 			Socket conn = this.server.accept();
 			System.out.println("Connected to client: " + conn.toString());
-			DataInputStream in = new DataInputStream(conn.getInputStream());
 			// Request
-			BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+			BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 			while (true) {
 				String line = reader.readLine();
 				System.out.println(line);
